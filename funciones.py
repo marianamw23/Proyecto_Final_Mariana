@@ -1,4 +1,6 @@
-#Funciones se invoca para poder ejeutar
-def saludar_estudiantes (Lista) # ciclos parameytros elementos listas
-  for nombre in Lista
-      print (bienvendido)
+def saludar_estudiantes (Lista):
+  for nombre in Lista:
+    print("bienvenido", nombre)
+
+estudiantes = ["sofia", "juan", "maria"] # Changed 'estudiante' to 'estudiantes' and added more names
+saludar_estudiantes(estudiantes)
