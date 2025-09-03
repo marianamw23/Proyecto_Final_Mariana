@@ -1,0 +1,15 @@
+{
+    "tesoro": {
+        "rojo": 119,
+        "azul": 85
+    },
+    "eventos": [
+        {
+            "fecha": "2025-09-03 15:17:57",
+            "accion": "retirar",
+            "color": "rojo",
+            "monto": 1,
+            "total": 119
+        }
+    ]
+}
