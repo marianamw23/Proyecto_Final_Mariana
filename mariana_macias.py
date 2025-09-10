@@ -27,7 +27,19 @@ ingredientes_riesgosos = {
     "fd&c": -1,
     "oxybenzone" : -3,
     "toluene":-5,
-    "oxybenzone": -3
+    "alcohol denat.": -2,
+    "sodium hydroxide": -1,
+    "polyacrylamide": -1,
+    "c13-14 isoparaffin": -1,
+    "laureth-7": -1,
+    "polyacrylamide": -1,
+     "ethylhexyl methoxycinnamate": -1,  # filtro uv con controversia  
+    "c9-11 pareth-6": -1,
+    "benzophenone-3": -2,   # oxibenzona, filtro uv controvertido
+    "bht": -2,
+    "phenoxyethanol": -1
+    
+
 }
 
 # Lista de ingredientes seguros/beneficiosos con puntajes positivos
@@ -68,8 +80,25 @@ ingredientes_buenos = {
     "ceramide ap": +3,
     "ceramide eop":+3,
     "phytic acid": +1,
-    "citric acid":+1}
-# Lista de ingredientes seguros/beneficiosos con puntajes positivos
+    "isononyl isononanoate":+ 1,
+    "butylene glycol": +1,
+    "pentylene glycol": +1,
+    "zinc pca": +2,
+    "capryloyl glycine": +1,
+    "salicylic acid": +2,
+    "caprylyl glycol": +1,
+    "glyceryl stearate": +1,
+    "2-oleamido-1,3-octadecanediol": +1,
+    "citric acid": +1,
+    "maltodextrin": +1,
+    "tocopheryl acetate": +2,
+    "ethylhexyl palmitate": +1,
+    "ethylhexylglycerin": +1,
+    "caprylyl glycol": 1,
+    "butyrospermum parkii butter": 2,  
+    "chamomile":+2
+    }
+# Lista de ingredientes neutros con puntajes positivos
 ingredientes_neutros = {"agua":0,
     "glicerina":0,
     "carbomer":0,
@@ -93,8 +122,14 @@ ingredientes_neutros = {"agua":0,
     "triethanolamine":0,
     "pvp":0,
     "xanthan gum":0,
-    "hydroxyethylcellulose":0
-
+    "hydroxyethylcellulose":0,
+    "silica": 0,
+    "ammonium polyacryloyldimethyl taurate": 0,
+    "sorbitan isostearate": 0,
+    "sorbitan oleate": 0,
+    "cetyl alcohol": 0,
+    "disodium edta": 0,
+    "tetrasodium edta": 0
     }
 
 
@@ -102,6 +137,7 @@ def analizar_cosmetico(lista_ingredientes):
     puntaje = 0
     riesgos = []
     beneficios = []
+    neutros=[]
 
     for ing in lista_ingredientes:
         ing_lower = ing.lower()
@@ -120,6 +156,14 @@ def analizar_cosmetico(lista_ingredientes):
                 puntaje += ingredientes_buenos[bueno]
                 beneficios.append(ing)
                 encontrado = True
+        
+        #Buscar si es neutro
+        for neutro in ingredientes_neutros:
+            if neutro in ing_lower:
+                puntaje+= ingredientes_neutros[neutro]
+                neutros.append(ing)
+                encontrado= True
+
 
         if not encontrado:
             print(f" {ing}: ingrediente no clasificado")
@@ -138,6 +182,7 @@ def analizar_cosmetico(lista_ingredientes):
     print(f" Clasificación: {estado}")
     print(f" Riesgos detectados: {', '.join(riesgos) if riesgos else 'Ninguno'}")
     print(f" Ingredientes buenos: {', '.join(beneficios) if beneficios else 'Ninguno'}")
+    print(f" Ingredientes neutros: {', '.join(neutros) if neutros else 'Ninguno'}")
 
 
 
